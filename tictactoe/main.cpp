@@ -322,7 +322,6 @@ class TicTacToe : public gmx::Application {
             swapPlayer();
             checkWinner();
             if (gameResult != IGNORE_RESULT) {
-                printf("Result: %d\n", gameResult);
                 switch (gameResult) {
                     case WINNER_X:
                         message = X_WIN_MESSAGE;

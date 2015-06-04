@@ -1,0 +1,3 @@
+[submodule "gmx"]
+	path = gmx
+	url = https://github.com/emersonmx/gmx.git

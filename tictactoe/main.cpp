@@ -69,16 +69,6 @@ class Timer {
         Uint32 lastTicks;
 };
 
-SDL_Surface* loadImage(const char* filename) {
-    SDL_Surface* loadedImage = IMG_Load(filename);
-    if (loadedImage == NULL) {
-        printf("Não foi possível carregar a image %s. IMG_Error: %s\n", filename, IMG_GetError());
-        return NULL;
-    }
-
-    return loadedImage;
-}
-
 bool pointInRect(int x, int y, const SDL_Rect* rect) {
     return (x >= rect->x) && (x < (rect->x + rect->w)) &&
            (y >= rect->y) && (y < (rect->y + rect->h));
@@ -127,18 +117,11 @@ class TicTacToe : public gmx::Application {
 
     private:
         Texture* loadTexture(const char* filename) {
-            SDL_Surface* surface = loadImage(filename);
-            if (surface == NULL) {
-                return NULL;
-            }
-
-            SDL_Texture* sdltexture = SDL_CreateTextureFromSurface(renderer, surface);
+            SDL_Texture* sdltexture = IMG_LoadTexture(renderer, filename);
             if (sdltexture == NULL) {
                 printf("Não foi possível criar a texture. SDL_Error: %s\n", SDL_GetError());
                 return NULL;
             }
-
-            SDL_FreeSurface(surface);
 
             int w, h;
             SDL_QueryTexture(sdltexture, NULL, NULL, &w, &h);
